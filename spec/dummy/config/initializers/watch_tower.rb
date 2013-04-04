@@ -2,15 +2,23 @@ module WatchTower
 
   class Engine < Rails::Engine
 
-    config.airbrake = {
-      api_key: "fake_airbrake",
-      development_environments: []
-    }
 
-    config.rollbar = {
-      api_key: "fake_rollbar",
-      use_async: true
-    }
+    config.providers = [
+      {
+        provider: :rollbar,
+        api_key: 'fake_rollbar',
+        settings: {
+          async: true
+        }
+      },
+      {
+        provider: :airbrake,
+        api_key: 'fake_airbrake',
+        settings: {
+          development_environments: []
+        }
+      }
+    ]
 
   end
 end

@@ -13,7 +13,7 @@ class WidgetsController < ApplicationController
     begin
       raise 'catch'
     rescue
-      WatchTower.alert($!, controller: self)
+      alert_watch_tower($!)
     end
     render :index
   end
