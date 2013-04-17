@@ -6,7 +6,7 @@ module WatchTower::Providers
       ::Rollbar.configure do |c|
         c.access_token = api_key
         c.person_username_method = settings[:person_username_method] if settings[:person_username_method].present?
-        c.person_email_method = settings.rollbar[:person_email_method] if settings[:person_email_method].present?
+        c.person_email_method = settings[:person_email_method] if settings[:person_email_method].present?
         c.project_gems = settings[:project_gems] if settings[:project_gems]
         c.use_async = !!settings[:use_async]
       end
