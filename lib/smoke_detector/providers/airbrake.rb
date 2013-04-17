@@ -1,4 +1,4 @@
-module WatchTower::Providers
+module SmokeDetector::Providers
   class Airbrake < Provider
 
     def initialize(api_key, settings = {})
@@ -20,7 +20,7 @@ module WatchTower::Providers
     end
 
     module ControllerMethods
-      def alert_watch_tower(exception, options = {})
+      def alert_smoke_detector(exception, options = {})
         super if defined?(super)
 
         notify_airbrake(exception)

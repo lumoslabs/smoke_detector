@@ -9,7 +9,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require
-require "watch_tower"
+require "smoke_detector"
 require 'pry'
 require 'pry-nav'
 require 'pry-rescue'

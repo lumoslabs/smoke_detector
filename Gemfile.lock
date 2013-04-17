@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    watch_tower (0.1.0)
+    smoke_detector (0.0.1)
       airbrake (~> 3.1.8)
       rails (~> 3.2.12)
       rollbar (~> 0.9.3)
@@ -158,5 +158,5 @@ DEPENDENCIES
   rspec
   rspec-rails
   ruby-debug19
+  smoke_detector!
   sqlite3
-  watch_tower!

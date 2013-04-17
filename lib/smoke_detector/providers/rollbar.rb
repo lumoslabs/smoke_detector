@@ -1,4 +1,4 @@
-module WatchTower::Providers
+module SmokeDetector::Providers
 
   class Rollbar < Provider
 
@@ -27,7 +27,7 @@ module WatchTower::Providers
     end
 
     module ControllerMethods
-      def alert_watch_tower(exception, options = {})
+      def alert_smoke_detector(exception, options = {})
         super if defined?(super)
 
         if data = options.delete(:data)

@@ -13,7 +13,7 @@ class WidgetsController < ApplicationController
     begin
       raise 'catch'
     rescue
-      alert_watch_tower($!)
+      alert_smoke_detector($!)
     end
     render :index
   end

@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe WatchTower do
+describe SmokeDetector do
   describe '.alert' do
     let(:err) { Exception.new }
 
     before do
-      WatchTower.register_provider(:airbrake, 'key')
-      WatchTower.register_provider(:rollbar, 'key')
-      WatchTower.providers.size.should > 1
+      SmokeDetector.register_provider(:airbrake, 'key')
+      SmokeDetector.register_provider(:rollbar, 'key')
+      SmokeDetector.providers.size.should > 1
     end
 
     context 'given an exception' do
       it 'notifies the provider of the exception' do
-        WatchTower.providers.each do |provider|
+        SmokeDetector.providers.each do |provider|
           provider.should_receive(:alert).once.with(err, {})
         end
-        WatchTower.alert(err)
+        SmokeDetector.alert(err)
       end
     end
   end
@@ -25,10 +25,10 @@ describe WatchTower do
       let(:message) { "holy crap!" }
 
       it 'notifies the provider of the message' do
-        WatchTower.providers.each do |provider|
+        SmokeDetector.providers.each do |provider|
           provider.should_receive(:message).once.with(message, {})
         end
-        WatchTower.message(message)
+        SmokeDetector.message(message)
       end
     end
   end

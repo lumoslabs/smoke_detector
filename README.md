@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/lumoslabs/watch_tower.png)](https://travis-ci.org/lumoslabs/watch_tower)
+[![Build Status](https://travis-ci.org/lumoslabs/smoke_detector.png)](https://travis-ci.org/lumoslabs/smoke_detector)
 
-Watch Tower
+Smoke Detector
 =============
 
-Lumos Error Reporting Gem
+Error Reporting Gem
 
 
 Installation
@@ -11,19 +11,19 @@ Installation
 
 Add the following to your `Gemfile`:
 ```
-gem 'watch_tower'
+gem 'smoke_detector'
 ```
 This assumes you're using Lumos Labs' gemfury account.
 
-Then add the provider's gem to your gemfile. Watch Tower currently supports Rollbar and Airbrake. For example,
+Then add the provider's gem to your gemfile. Smoke Detector currently supports Rollbar and Airbrake. For example,
 ```
 gem 'airbrake'
 gem 'rollbar'
 ```
 
-Finally, create an initializer file `config/initializers/watch_tower.rb`:
+Finally, create an initializer file `config/initializers/smoke_detector.rb`:
 ```
-module WatchTower
+module SmokeDetector
 
   class Engine < Rails::Engine
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe WatchTower::Providers::Airbrake do
-  let(:provider) { WatchTower::Providers::Airbrake.new('api_key', settings) }
+describe SmokeDetector::Providers::Airbrake do
+  let(:provider) { SmokeDetector::Providers::Airbrake.new('api_key', settings) }
   let(:settings) { {} }
   let(:err) { mock('error', backtrace: [], message: 'bad news') }
   let(:data) { {custom: :data} }
@@ -47,16 +47,16 @@ describe WatchTower::Providers::Airbrake do
   describe 'ControllerMethods' do
     let(:controller) do
       ActionController::Base.new.tap do |c|
-        c.class.send(:include, WatchTower::Providers::Airbrake::ControllerMethods)
+        c.class.send(:include, SmokeDetector::Providers::Airbrake::ControllerMethods)
         c.stub(:rollbar_request_data)
         c.stub(:rollbar_person_data)
       end
     end
 
-    describe '#alert_watch_tower' do
+    describe '#alert_smoke_detector' do
       it 'notifies Airbrake of the exception' do
         controller.should_receive(:notify_airbrake)
-        controller.alert_watch_tower(err)
+        controller.alert_smoke_detector(err)
       end
     end
   end

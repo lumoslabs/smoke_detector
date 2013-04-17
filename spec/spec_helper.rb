@@ -16,7 +16,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.before(:each) do
-    WatchTower.instance_variable_set(:@providers, [])
+    SmokeDetector.instance_variable_set(:@providers, [])
 
     # sandbox services
     Airbrake.stub(:send_notice)

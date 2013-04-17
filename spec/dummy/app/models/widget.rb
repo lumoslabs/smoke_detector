@@ -7,7 +7,7 @@ class Widget
   def self.raise_catch
     raise 'deep_catch'
   rescue
-    WatchTower.alert($!)
+    SmokeDetector.alert($!)
   end
 
 end

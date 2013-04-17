@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe WatchTower::Providers::Rollbar do
-  let(:provider) { WatchTower::Providers::Rollbar.new('api_key', settings) }
+describe SmokeDetector::Providers::Rollbar do
+  let(:provider) { SmokeDetector::Providers::Rollbar.new('api_key', settings) }
   let(:settings) { {} }
   let(:err) { StandardError.new('error') }
   let(:data) { {custom: :data} }
@@ -59,16 +59,16 @@ describe WatchTower::Providers::Rollbar do
   describe 'ControllerMethods' do
     let(:controller) do
       ActionController::Base.new.tap do |c|
-        c.class.send(:include, WatchTower::Providers::Rollbar::ControllerMethods)
+        c.class.send(:include, SmokeDetector::Providers::Rollbar::ControllerMethods)
       end
     end
 
-    describe '#alert_watch_tower' do
+    describe '#alert_smoke_detector' do
       it 'notifies Rollbar of the exception' do
         Rollbar.should_receive(:report_exception)
         controller.should_receive(:rollbar_request_data)
         controller.should_receive(:rollbar_person_data)
-        controller.alert_watch_tower(err)
+        controller.alert_smoke_detector(err)
       end
     end
   end

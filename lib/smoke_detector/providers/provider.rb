@@ -1,4 +1,4 @@
-module WatchTower::Providers
+module SmokeDetector::Providers
 
   class Provider
     attr_accessor :controller_proc

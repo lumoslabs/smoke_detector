@@ -1,4 +1,4 @@
-module WatchTower
+module SmokeDetector
 
   class Engine < Rails::Engine
 

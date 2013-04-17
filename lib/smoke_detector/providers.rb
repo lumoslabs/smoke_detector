@@ -1,6 +1,6 @@
 require 'active_support/inflector'
 
-module WatchTower
+module SmokeDetector
   PROVIDERS = [
     :airbrake,
     :rollbar
@@ -20,18 +20,18 @@ module WatchTower
   def self.registered_provider?(provider_name)
     raise ProviderRegistrationError, 'Unsupported Provider' unless PROVIDERS.include?(provider_name)
     klass = classify_provider(provider_name)
-    !!WatchTower.providers.detect { |provider| provider.is_a?(klass) }
+    !!SmokeDetector.providers.detect { |provider| provider.is_a?(klass) }
   end
 
   private
 
   def self.classify_provider(provider_name)
     raise ProviderRegistrationError, 'Unsupported Provider' unless PROVIDERS.include?(provider_name)
-    ::ActiveSupport::Inflector.constantize("WatchTower::Providers::#{provider_name.capitalize}")
+    ::ActiveSupport::Inflector.constantize("SmokeDetector::Providers::#{provider_name.capitalize}")
   end
 end
 
-require 'watch_tower/providers/provider'
-WatchTower::PROVIDERS.each do |provider|
-  require "watch_tower/providers/#{provider}"
+require 'smoke_detector/providers/provider'
+SmokeDetector::PROVIDERS.each do |provider|
+  require "smoke_detector/providers/#{provider}"
 end

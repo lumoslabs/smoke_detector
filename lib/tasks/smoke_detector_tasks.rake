@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :watch_tower do
+# task :smoke_detector do
 #   # Task goes here
 # end

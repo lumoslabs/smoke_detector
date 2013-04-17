@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe WatchTower::Providers::Provider do
-  let(:provider) { WatchTower::Providers::Provider.new }
+describe SmokeDetector::Providers::Provider do
+  let(:provider) { SmokeDetector::Providers::Provider.new }
 
   describe '#alert' do
     subject { provider.alert(Exception.new) }
