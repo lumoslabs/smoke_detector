@@ -4,7 +4,7 @@ module SmokeDetector::Providers
     def initialize(api_key, settings = {})
       ::Airbrake.configure do |c|
         c.api_key = api_key
-        c.development_environments = settings[:development_environments] if settings[:development_environments]
+        apply_configuration_settings(c, settings)
       end
     end
 

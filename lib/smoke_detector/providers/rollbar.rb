@@ -5,13 +5,16 @@ module SmokeDetector::Providers
     def initialize(api_key, settings = {})
       ::Rollbar.configure do |c|
         c.access_token = api_key
-        c.person_username_method = settings[:person_username_method] if settings[:person_username_method].present?
-        c.person_email_method = settings[:person_email_method] if settings[:person_email_method].present?
-        c.project_gems = settings[:project_gems] if settings[:project_gems]
-        c.use_async = !!settings[:use_async]
+        apply_configuration_settings(c, settings)
+
+        # set Rollbar defaults
+        c.logger ||= ::Rails.logger
+        c.environment ||= ::Rails.env
+        c.root ||= ::Rails.root
+        c.framework = "Rails: #{::Rails::VERSION::STRING}"
+        c.filepath ||= ::Rails.application.class.parent_name + '.rollbar'
       end
     end
-
 
     def alert(exception, options = {})
       if data = options.delete(:data)
