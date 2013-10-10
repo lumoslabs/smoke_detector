@@ -4,12 +4,13 @@ module SmokeDetector::Providers
 
     def initialize(api_key, settings = {})
       ::Rollbar.configure do |c|
+        c.environment = ::Rails.env # Rollbar sets this to 'unspecified' by default
+
         c.access_token = api_key
         apply_configuration_settings(c, settings)
 
         # set Rollbar defaults
         c.logger ||= ::Rails.logger
-        c.environment ||= ::Rails.env
         c.root ||= ::Rails.root
         c.framework = "Rails: #{::Rails::VERSION::STRING}"
         c.filepath ||= ::Rails.application.class.parent_name + '.rollbar'

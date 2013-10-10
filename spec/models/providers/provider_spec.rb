@@ -23,16 +23,16 @@ describe SmokeDetector::Providers::Provider do
     subject { provider.send(:apply_configuration_settings, config, settings) }
 
     context 'given a valid configuration setting' do
-      let(:config) { stub(:config, :'setting=' => true) }
+      let(:config) { double(:config, :'setting=' => true) }
       let(:settings) { {setting: false} }
 
       it 'does not raise an error' do
-        expect { subject }.to_not raise_error(ArgumentError)
+        expect { subject }.not_to raise_error
       end
     end
 
     context 'given an invalid configuration setting' do
-      let(:config) { stub(:config) }
+      let(:config) { double(:config) }
       let(:settings) { {setting: false} }
 
       it 'raises an error' do

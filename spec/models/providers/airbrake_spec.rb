@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SmokeDetector::Providers::Airbrake do
   let(:provider) { SmokeDetector::Providers::Airbrake.new('api_key', settings) }
   let(:settings) { {} }
-  let(:err) { mock('error', backtrace: [], message: 'bad news') }
+  let(:err) { double('error', backtrace: [], message: 'bad news') }
   let(:data) { {custom: :data} }
 
   describe '#alert' do
@@ -15,7 +15,7 @@ describe SmokeDetector::Providers::Airbrake do
     context 'when passed a controller option' do
       it 'ignores the option' do
         Airbrake.should_receive(:notify).with(err)
-        provider.alert(err, controller: mock('controller'))
+        provider.alert(err, controller: double('controller'))
       end
     end
 
