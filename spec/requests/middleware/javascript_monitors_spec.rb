@@ -14,13 +14,28 @@ describe SmokeDetector::JavaScriptMonitors do
   end
 
   context 'with a Rollbar client API key configured' do
+    let(:additional_settings) { {} }
     before do
-      SmokeDetector.register_provider(:rollbar, 'key', 'client_key')
+      SmokeDetector.register_provider(:rollbar, 'key', 'client_key', additional_settings)
     end
 
     it 'injects the Rollbar JS snippet into the <head>' do
       get '/widgets'
       expect(Nokogiri::HTML(response.body).css('head script:contains("_rollbarConfig")')).to_not be_empty
+    end
+
+    it 'does not inject url filtering code' do
+      get '/widgets'
+      expect(Nokogiri::HTML(response.body).css('head script:contains("_rollbarConfig.checkIgnore")')).to be_empty
+    end
+
+    context 'with url filtering enabled' do
+      let(:additional_settings) { {js_url_filter: 'https?:\/\/localhost.*'} }
+
+      it 'injects the Rollbar JS snippet into the <head>' do
+        get '/widgets'
+        expect(Nokogiri::HTML(response.body).css('head script:contains("_rollbarConfig.checkIgnore")')).to_not be_empty
+      end
     end
   end
 

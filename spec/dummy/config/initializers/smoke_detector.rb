@@ -9,7 +9,8 @@ module SmokeDetector
         api_key: 'fake_rollbar',
         client_api_key: 'fake_rollbar_client',
         settings: {
-          use_async: true
+          use_async: true,
+          js_url_filter: '^https?:\/\/.*localhost.*'
         }
       },
       {
