@@ -31,7 +31,8 @@ module SmokeDetector
     end
 
     def monitor?(headers)
-      headers["Content-Type"] =~ ACCEPTABLE_CONTENT && monitoring_code.present?
+      # minified code may not be UTF8 compliant, so you can't use present? reliably
+      headers["Content-Type"] =~ ACCEPTABLE_CONTENT && monitoring_code.size > 10
     end
   end
 end

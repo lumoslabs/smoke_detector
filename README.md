@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lumoslabs/smoke_detector.png)](https://travis-ci.org/lumoslabs/smoke_detector)
+[![Build Status](https://travis-ci.org/lumoslabs/smoke_detector.svg?branch=master)](https://travis-ci.org/lumoslabs/smoke_detector)
 
 Smoke Detector
 =============
