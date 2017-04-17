@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    smoke_detector (2.0.0)
+    smoke_detector (2.0.1)
       airbrake (~> 3.1.8)
       rails (~> 4.0)
       rollbar (~> 1.4.0)
